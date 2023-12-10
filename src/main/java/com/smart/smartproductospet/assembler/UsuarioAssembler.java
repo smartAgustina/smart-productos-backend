@@ -10,12 +10,9 @@ public class UsuarioAssembler {
 
 	public static UsuarioDto toDto(Usuario usuario) {
 		UsuarioDto usuarioDto = new UsuarioDto();
-		usuarioDto.setIdUsuario(usuario.getIdUsuario());
 		usuarioDto.setNombre(usuario.getNombre());
 		usuarioDto.setApellido(usuario.getApellido());
-		usuarioDto.setDNI(usuario.getDNI());
-		usuarioDto.setFechaDeNacimiento(usuario.getFechaDeNacimiento());
-		usuarioDto.setPerfil(usuario.getPerfil());
+		usuarioDto.setDni(usuario.getDni());
 		usuarioDto.setTelefono(usuario.getTelefono());
 		usuarioDto.setMail(usuario.getMail());
 		usuarioDto.setPassword(usuario.getPassword());
@@ -26,12 +23,9 @@ public class UsuarioAssembler {
 
 	public static Usuario toEntity(UsuarioDto dto) {
 		Usuario usuario = new Usuario();
-		usuario.setIdUsuario(dto.getIdUsuario());
 		usuario.setNombre(dto.getNombre());
 		usuario.setApellido(dto.getApellido());
-		usuario.setDNI(dto.getDNI());
-		usuario.setFechaDeNacimiento(dto.getFechaDeNacimiento());
-		usuario.setPerfil(dto.getPerfil());
+		usuario.setDni(dto.getDni());
 		usuario.setTelefono(dto.getTelefono());
 		usuario.setMail(dto.getMail());
 		usuario.setPassword(dto.getPassword());

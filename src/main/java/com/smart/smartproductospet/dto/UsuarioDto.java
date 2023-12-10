@@ -2,9 +2,6 @@ package com.smart.smartproductospet.dto;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
-
-import com.smart.smartproductospet.entidades.Direccion;
 
 
 public class UsuarioDto implements Serializable {
@@ -13,9 +10,8 @@ public class UsuarioDto implements Serializable {
 	private Integer idUsuario;
 	private String nombre;
 	private String apellido;
-	private String DNI;
+	private String dni;
 	private Date fechaDeNacimiento; 
-	private String perfil;
 	private String telefono;
 	private String mail;
 	private String password;
@@ -24,15 +20,13 @@ public class UsuarioDto implements Serializable {
 	public UsuarioDto(){
 	}
 	
-	public UsuarioDto(Integer idUsuario, String nombre, String apellido, String dNI, Date fechaDeNacimiento,
-			String perfil, String telefono, String mail, String username, String password, Date ultimoAcceso) {
+	public UsuarioDto(Integer idUsuario, String nombre, String apellido, String dni,
+		 String telefono, String mail, String password, Date ultimoAcceso) {
 		super();
 		this.idUsuario = idUsuario;
 		this.nombre = nombre;
 		this.apellido = apellido;
-		DNI = dNI;
-		this.fechaDeNacimiento = fechaDeNacimiento;
-		this.perfil = perfil;
+		this.dni = dni;
 		this.telefono = telefono;
 		this.mail = mail;
 		this.password = password;
@@ -58,23 +52,17 @@ public class UsuarioDto implements Serializable {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public String getDNI() {
-		return DNI;
+	public String getDni() {
+		return dni;
 	}
-	public void setDNI(String dNI) {
-		DNI = dNI;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 	public Date getFechaDeNacimiento() {
 		return fechaDeNacimiento;
 	}
 	public void setFechaDeNacimiento(Date fechaDeNacimiento) {
 		this.fechaDeNacimiento = fechaDeNacimiento;
-	}
-	public String getPerfil() {
-		return perfil;
-	}
-	public void setPerfil(String perfil) {
-		this.perfil = perfil;
 	}
 	public String getTelefono() {
 		return telefono;

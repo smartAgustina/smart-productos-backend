@@ -11,6 +11,6 @@ import com.smart.smartproductospet.entidades.Usuario;
 @Repository
 public interface UsuarioRepository extends JpaRepository <Usuario, Integer>{
 
-    Optional<Usuario> findUserByMail(String mail);
+    Optional<Usuario> findByMail(String mail);
 
 }

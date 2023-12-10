@@ -1,114 +1,74 @@
 package com.smart.smartproductospet.entidades;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import com.smart.smartproductospet.enums.Rol;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Entity
-@Table(name = "usuarios")
 @Data
-public class Usuario {
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "usuarios", uniqueConstraints = {@UniqueConstraint(columnNames  = "mail")})
+
+public class Usuario implements UserDetails{
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-	private String nombre;
-	private String apellido;
-	private String DNI;
-	private Date fechaDeNacimiento; 
-	private String perfil;
-	private String telefono;
+	@Column(nullable = false)
 	private String mail;
 	private String password;
+	private String nombre;
+	private String apellido;
+	private String dni;
+	private String telefono;
 	private Date ultimoAcceso;
-	//private List<Direccion> direcciones;
-	
-	public Usuario () {
+	@Enumerated(EnumType.STRING)
+	private Rol rol;
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+	 return List.of(new SimpleGrantedAuthority(rol.name()));	
 	}
-	
-	public Usuario(Integer id, String nombre, String apellido, String DNI, Date fechaDeNacimiento, String perfil, String telefono,
-			String mail, String username, String password) {
-		super();
-		this.setIdUsuario(id);
-		this.nombre = nombre;
-		this.apellido = apellido;
-		this.DNI = DNI;
-		this.fechaDeNacimiento = fechaDeNacimiento;
-		this.perfil = perfil;
-		this.telefono = telefono;
-		this.mail = mail;
-		this.password = password;
-	}
-	
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getApellido() {
-		return apellido;
-	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
-	}
-	public String getDNI() {
-		return DNI;
-	}
-	public void setDNI(String dNI) {
-		DNI = dNI;
-	}
-	public Date getFechaDeNacimiento() {
-		return fechaDeNacimiento;
-	}
-	public void setFechaDeNacimiento(Date fechaDeNacimiento) {
-		this.fechaDeNacimiento = fechaDeNacimiento;
-	}
-	public String getPerfil() {
-		return perfil;
-	}
-	public void setPerfil(String perfil) {
-		this.perfil = perfil;
-	}
-	public String getTelefono() {
-		return telefono;
-	}
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-	public String getMail() {
+	@Override
+	public String getUsername() {
 		return mail;
 	}
-	public void setMail(String mail) {
-		this.mail = mail;
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
 	}
-
-	public String getPassword() {
-		return password;
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
 	}
-
-	public Integer getIdUsuario() {
-		return id;
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
-
-	public void setIdUsuario(Integer idUsuario) {
-		this.id = idUsuario;
-	}
-
-	public Date getUltimoAcceso() {
-		return ultimoAcceso;
-	}
-
-	public void setUltimoAcceso(Date ultimoAcceso) {
-		this.ultimoAcceso = ultimoAcceso;
-	}	
-	
 }
