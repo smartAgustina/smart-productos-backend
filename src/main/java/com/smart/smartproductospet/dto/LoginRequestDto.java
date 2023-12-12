@@ -16,7 +16,4 @@ public class LoginRequestDto implements Serializable {
 		private String mail;
 		private String password;
 
-		public LoginRequestDto() {
-		}
-
 }
