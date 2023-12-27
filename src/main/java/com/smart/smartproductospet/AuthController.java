@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smart.smartproductospet.dto.AuthResponseDto;
 import com.smart.smartproductospet.dto.LoginRequestDto;
 import com.smart.smartproductospet.dto.RegisterRequestDto;
+import com.smart.smartproductospet.excepciones.GlobalExceptionHandler;
+import com.smart.smartproductospet.excepciones.ServiceException;
 import com.smart.smartproductospet.servicios.AuthService;
 
 import lombok.RequiredArgsConstructor;
@@ -29,10 +31,8 @@ public class AuthController {
     }
 
     @PostMapping (value = "register")
-     public ResponseEntity<AuthResponseDto> register(@RequestBody RegisterRequestDto request){
-         return ResponseEntity.ok(authService.register(request));
-     }
-
-
-
+     public ResponseEntity<AuthResponseDto> register(@RequestBody RegisterRequestDto request) {
+            return ResponseEntity.ok(authService.register(request));
+    }
 }
+

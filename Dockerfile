@@ -1,5 +1,6 @@
 # Usar una imagen base con JDK 17 y Maven
-FROM maven:3.9.5-openjdk-17 AS build
+FROM maven:3.9.5-eclipse-temurin-17 AS build
+
 
 # Establecer un directorio de trabajo
 WORKDIR /app
@@ -17,7 +18,7 @@ FROM openjdk:17-jdk-slim
 EXPOSE 8080
 
 # Copiar el archivo JAR construido desde la etapa anterior
-COPY --from=build /app/target/demo-0.0.1-SNAPSHOT.jar /app/demo-0.0.1-SNAPSHOT.jar
+COPY --from=build /app/target/smart-productos-pet-0.0.1-SNAPSHOT.jar /app/smart-productos-pet-0.0.1-SNAPSHOT.jar
 
 # Establecer el punto de entrada para ejecutar la aplicación
-ENTRYPOINT ["java", "-jar", "/app/demo-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "/app/smart-productos-pet-0.0.1-SNAPSHOT.jar"]

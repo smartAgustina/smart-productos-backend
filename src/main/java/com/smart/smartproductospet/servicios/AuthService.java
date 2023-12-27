@@ -1,7 +1,11 @@
 package com.smart.smartproductospet.servicios;
 import java.util.Date;
+import java.util.Optional;
+
+import javax.naming.AuthenticationException;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -12,6 +16,7 @@ import com.smart.smartproductospet.dto.LoginRequestDto;
 import com.smart.smartproductospet.dto.RegisterRequestDto;
 import com.smart.smartproductospet.entidades.Usuario;
 import com.smart.smartproductospet.enums.Rol;
+import com.smart.smartproductospet.excepciones.AuthenticationFailedException;
 import com.smart.smartproductospet.jwt.JwtService;
 import com.smart.smartproductospet.repositorios.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,8 +33,12 @@ public class AuthService {
 
     private final PasswordEncoder passwordEncoder;
     
-    public AuthResponseDto register(RegisterRequestDto request) {
-       Usuario usuario = Usuario.builder()
+    public AuthResponseDto register(RegisterRequestDto request){
+    Optional<Usuario> usuarioEncontrado = usuarioRepository.findByMail(request.getMail());
+    if (usuarioEncontrado.isPresent()) {
+            throw new IllegalArgumentException("Ya se encuentra registrado un usuario con ese email.");
+    }
+    Usuario usuario = Usuario.builder()
        .mail(request.getMail())
        .password(passwordEncoder.encode(request.getPassword()))
        .nombre(request.getNombre())
@@ -47,12 +56,16 @@ public class AuthService {
     }
 
     public AuthResponseDto login(LoginRequestDto request) {
+      try {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(request.getMail(), request.getPassword()));
         UserDetails usuario = usuarioRepository.findByMail(request.getMail()).orElseThrow();
         String token = jwtService.getToken(usuario);
         return AuthResponseDto.builder()
-        .token(token)
-        .build();
+            .token(token)
+            .build();
+    } catch (BadCredentialsException e) {
+        throw new AuthenticationFailedException("No se pudo iniciar sesión con los datos ingresados. Por favor, verifíquelos e inténtelo de nuevo..");
+    }
     }
 
 
