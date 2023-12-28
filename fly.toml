@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for smart-productos-pet-shy-lake-994 on 2023-12-23T12:24:18-03:00
+# fly.toml app configuration file generated for smart-productos-pet-shy-lake-994-weathered-dream-2534 on 2023-12-27T22:28:04-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "smart-productos-pet-shy-lake-994"
+app = "smart-productos-pet-shy-lake-994-weathered-dream-2534"
 primary_region = "eze"
 
 [build]

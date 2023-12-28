@@ -2,7 +2,6 @@ package com.smart.smartproductospet.servicios;
 import java.util.Date;
 import java.util.Optional;
 
-import javax.naming.AuthenticationException;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
