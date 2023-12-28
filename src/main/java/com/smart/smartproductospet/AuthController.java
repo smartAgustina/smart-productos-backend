@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smart.smartproductospet.dto.AuthResponseDto;
 import com.smart.smartproductospet.dto.LoginRequestDto;
 import com.smart.smartproductospet.dto.RegisterRequestDto;
-import com.smart.smartproductospet.excepciones.GlobalExceptionHandler;
-import com.smart.smartproductospet.excepciones.ServiceException;
 import com.smart.smartproductospet.servicios.AuthService;
 
 import lombok.RequiredArgsConstructor;

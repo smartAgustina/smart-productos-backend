@@ -43,7 +43,7 @@ public class AuthService {
        .password(passwordEncoder.encode(request.getPassword()))
        .nombre(request.getNombre())
        .apellido(request.getApellido())
-       .dni(request.getDNI())
+       .dni(request.getDni())
        .telefono(request.getTelefono())
        .rol(Rol.USER)
        .ultimoAcceso(new Date())

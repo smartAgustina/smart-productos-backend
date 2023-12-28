@@ -17,6 +17,6 @@ public class RegisterRequestDto implements Serializable
     private String password;
     private String nombre;
     private String apellido;
-    private String DNI;
+    private String dni;
     private String telefono;
 }
