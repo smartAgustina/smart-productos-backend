@@ -1,13 +1,10 @@
 package com.smart.smartproductospet.servicios;
 
 import java.util.Date;
-import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.smart.smartproductospet.dto.AuthResponseDto;
-import com.smart.smartproductospet.dto.RegisterRequestDto;
 import com.smart.smartproductospet.dto.UsuarioDto;
 import com.smart.smartproductospet.dto.UsuarioRequestDto;
 import com.smart.smartproductospet.dto.UsuarioResponseDto;
@@ -25,46 +22,24 @@ public class UsuarioService {
 
     public UsuarioResponseDto actualizarUsuario(UsuarioRequestDto userRequest) {
        
+        Usuario usuarioExistente = usuarioRepository.findById(userRequest.getId()).get(); // Obtiene el usuario actual
+        Rol rolActual = usuarioExistente.getRol(); // Guarda el rol actual
+
         Usuario usuario = Usuario.builder()
         .id(userRequest.getId())
         .mail(userRequest.getMail())
         .nombre(userRequest.getNombre())
         .apellido(userRequest.getApellido())
         .dni(userRequest.getDni())
+        .ultimoAcceso(new Date())
         .telefono(userRequest.getTelefono())
+        .rol(rolActual)
         .password(passwordEncoder.encode(userRequest.getPassword()))
         .build();
 
-        usuarioRepository.actualizarUsuario(usuario.getId(),usuario.getMail(), usuario.getNombre(), usuario.getApellido(), usuario.getDni(), usuario.getTelefono(), usuario.getPassword());
-
+         usuarioRepository.save(usuario);
         return new UsuarioResponseDto("El usuario se actualizó correctamente");
     }
-
- public AuthResponseDto register(RegisterRequestDto request){
-    
-    Usuario usuario = Usuario.builder()
-       .mail(request.getMail())
-       .password(passwordEncoder.encode(request.getPassword()))
-       .nombre(request.getNombre())
-       .apellido(request.getApellido())
-       .dni(request.getDni())
-       .telefono(request.getTelefono())
-       .rol(Rol.USER)
-       .ultimoAcceso(new Date())
-       .build();
-
-       usuarioRepository.save(usuario);
-       return AuthResponseDto.builder()
-       .token(jwtService.getToken(usuario))
-       .build();
-    }
-
-
-
-
-
-
-
 
 
     public UsuarioDto obtenerUsuario(Integer id) {

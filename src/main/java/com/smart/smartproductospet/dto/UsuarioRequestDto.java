@@ -1,5 +1,7 @@
 package com.smart.smartproductospet.dto;
 
+import com.smart.smartproductospet.enums.Rol;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,5 +18,6 @@ public class UsuarioRequestDto {
 	private String nombre;
 	private String apellido;
 	private String dni;
+	private Rol rol;
 	private String telefono;
 }

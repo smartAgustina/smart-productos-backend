@@ -1,6 +1,5 @@
 package com.smart.smartproductospet.dto;
 
-import java.io.Serializable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -23,6 +23,6 @@ public class ContactoEmailController {
     @PostMapping(value = "enviarEmail")
     public ResponseEntity<Object> login(@RequestBody EmailContactoRequest request){
         contactoEmailService.enviarEmail(request);
-        return ResponseEntity.ok().body("Hola");
+        return ResponseEntity.ok().body("Su consulta fue enviado con éxito");
     }
 }
