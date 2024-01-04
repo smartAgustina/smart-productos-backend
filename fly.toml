@@ -1,10 +1,10 @@
-# fly.toml app configuration file generated for smart-productos-pet-bold-snowflake-3978 on 2023-12-27T22:44:48-03:00
+# fly.toml app configuration file generated for smart-productos-pet-white-waterfall-8585-restless-shape-6437 on 2024-01-03T23:48:12-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "smart-productos-pet-bold-snowflake-3978"
-primary_region = "scl"
+app = "smart-productos-pet-white-waterfall-8585-restless-shape-6437"
+primary_region = "eze"
 
 [build]
 
