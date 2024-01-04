@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for smart-productos-pet-white-waterfall-8585-restless-shape-6437 on 2024-01-03T23:48:12-03:00
+# fly.toml app configuration file generated for smart-productos-pet-quiet-bush-3151-ancient-sun-1298-purple-waterfall-770 on 2024-01-04T00:04:30-03:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "smart-productos-pet-white-waterfall-8585-restless-shape-6437"
+app = "smart-productos-pet-quiet-bush-3151-ancient-sun-1298-purple-waterfall-770"
 primary_region = "eze"
 
 [build]
